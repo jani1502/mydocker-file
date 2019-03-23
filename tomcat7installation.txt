@@ -1,0 +1,102 @@
+TOMCAT7 INSTALLATION ON UBNUTU 14.04
+
+sudo apt-get update
+sudo apt-get install tomcat7
+sudo nano /etc/default/tomcat7
+under JAVA_OPTS line below paste below line.
+JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -Xmx512m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC"
+
+sudo service tomcat7 restart
+sudo apt-get install tomcat7-docs tomcat7-admin tomcat7-examples
+sudo nano /etc/tomcat7/tomcat-users.xml
+paste below line
+<tomcat-users>
+    <user username="admin" password="password" roles="manager-gui,admin-gui"/>
+</tomcat-users>
+
+sudo service tomcat7 restart
+
+---------------------------------------------------------------------------------------------------------
+
+DOCKER INSTALLATION COMMAND:
+
+sudo apt-get remove docker docker-engine docker.io containerd runc  ---->this cmd to remove old version.
+
+$ sudo apt-get update
+
+$ sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+$ sudo apt-get update
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+-----------------------------------------------------------------------
+second method Docker installation:
+
+
+
+
+
+--------------------------------------------------------------------------------
+two container link
+mysql--wordpres
+
+$ docker run --name janaki -e MYSQL_ROOT_PASSWORD=jani -d mysql:5.7.25
+$ docker run --name janu --link janaki:mysql -d -p 8080:80 wordpress
+
+----------------------------------------------------------------------
+Docker compose installation:
+
+$ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+$ sudo chmod +x /usr/local/bin/docker-compose
+$docker-compose version
+
+Write docker compose file in yml format:
+$ vi docker-copmose.yml
+version: '3'
+services:
+   db:
+     image: mysql:5.7.22
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: test
+   wordpress:
+     depends_on:
+       - db
+     image: wordpress:latest
+     ports:
+       - 8080:80
+     restart: always
+
+:wq
+
+$ docker-compose up -d  --->which execute above compose file.
+$ docker-compose down  --->which delete execute containers.
+
+Docker FIle:
+create file name : vi Dockerfile
+FROM ubuntu:14.04
+MAINTAINER janicharuku@gmail.com 
+RUN apt-get install git
+RUN apt-get update
+CMD ["echo" ,"hello"]
+
+$docker build -t (anynameimage)jani.1  ---> image will created by above file.
+$docker tag jani.1 jani1502/jani.1    --->tag the image name with dockerhub username.
+$docker push jani1502/jani.1
+
+--------------------------------------------------------------------
+
+
+
+
+
