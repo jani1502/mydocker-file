@@ -1,3 +1,56 @@
+INSTALL JAVA8 ON UBUNTU:
+
+
+$ sudo apt-add-repository ppa:webupd8team/java
+
+$ sudo apt-get update
+
+$ sudo apt-get install oracle-java8-installer
+------------------------------------------------------------------------------------------------------------
+
+INSTALL GIT :
+
+$ sudo apt-get install git
+
+INSTALL MAVEN:
+$ sudo apt-get install maven -y
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------
+JENKINS INSTALLATION:ON UBUNTU14.04
+
+$ wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add –
+
+$ sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+$ apt-get update
+$ apt-get install Jenkins
+
+JENKINS INSTALL ON UBUNTU:16.04:
+ 
+$ wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+$ echo deb https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
+$ sudo apt-get update
+$ sudo apt-get install jenkins
+$ sudo systemctl start jenkins
+$ sudo systemctl status jenkins
+
+-------------------------------------------------------------------------------------------------------------
+INSTALL ANSIBLE ON UBNUTU:16:04
+
+$ sudo apt-add-repository ppa:ansible/ansible
+$ sudo apt-get update
+$ sudo apt-get install ansible
+$ 
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 TOMCAT7 INSTALLATION ON UBNUTU 14.04
 
 sudo apt-get update
@@ -92,7 +145,7 @@ CMD ["echo" ,"hello"]
 
 $docker build -t (anynameimage)jani.1  ---> image will created by above file.
 $docker tag jani.1 jani1502/jani.1    --->tag the image name with dockerhub username.
-$docker push jani1502/jani.1
+$docker push jani1502/jani.1 .         ---->dot require for current directory.
 
 --------------------------------------------------------------------
 
